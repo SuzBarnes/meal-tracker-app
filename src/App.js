@@ -1,10 +1,11 @@
 import './App.css';
-import './Routes';
+import './CustomRoutes';
+import { CustomRoutes } from './CustomRoutes';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-     <Routes />
+     <CustomRoutes/>
     </div>
   );
 }
