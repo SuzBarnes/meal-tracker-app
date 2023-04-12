@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, } from 'react-router-dom'
 
+const routes = [];
+
 const Routes = () => {
     <Router>
         <Link>
