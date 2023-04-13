@@ -1,7 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import {SmallX} from '../ui'
 
-export const MealsListItem = () => {
+export const MealsListItem = ({meal, date}) => {
 return(
-    <h1>This is the Meals List Item Page</h1>
+    <div className = 'list-item'>
+        {meal ? (
+            <>
+            <h3>{date.getDate()}</h3>
+            <p>{meal.recipe.name}</p>
+            <div className='right-action'>
+                <SmallX />
+            </div>
+            </>
+        ): (
+            <>  
+            <h3>{date.getDate()}</h3>
+            <p>Nothing planned :(</p>
+            <div className='right-action'>
+                <Link to={`/recipes?date=${date.toString()}`}>
+                    <button>Add</button>
+                </Link>
+                </div>
+            </>
+        )}
+    </div>
 )
 };

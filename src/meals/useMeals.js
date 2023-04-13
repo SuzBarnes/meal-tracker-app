@@ -2,15 +2,15 @@ import {useState, useEffect} from 'react';
 
 export const useMeals = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [meals, setMeals] = useState([]);
+    const [rawMeals, setRawMeals] = useState([]);
 
     const loadMeals = async () => {
         setIsLoading(true);
         const response = await fetch('/meals')
-        console.log(response, "response")
-        const meals = await response.json();
-        console.log(meals, "meals")
-        setMeals(meals);
+        // console.log(response, "response")
+        const rawMealsResponse = await response.json();
+        // console.log(rawMeals.response, "meals")
+        setRawMeals(rawMealsResponse);
         setIsLoading(false);
     }
         
@@ -18,5 +18,8 @@ export const useMeals = () => {
         loadMeals();
 }, []);
 
-    return {isLoading, meals, setMeals};
+    return {isLoading, meals: rawMeals.map(rawMeal => ({
+        ...rawMeal,
+        plannedDate: new Date(rawMeal.plannedDate),
+    })), setMeals: setRawMeals};
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Dropdown = ({ options = [], ...props }) =>
+export const DropDown = ({ options = [], ...props }) =>
     <select {...props}>
     {options.map(opt => (
         <option

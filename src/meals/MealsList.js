@@ -1,7 +1,34 @@
 import React from 'react';
+import {MealsListItem} from './MealsListItem';
 
-export const MealsList = () => {
+const nextSevenDays = Array(7).fill().map((_, i) => {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    return date;
+});
+
+const datesAreSameDay = (date1, date2) => 
+    date1.getYear() === date2.getYear()
+    && date1.getMonth() === date2.getMonth()
+    && date1.getDate() === date2.getDate();
+
+
+export const MealsList = ({isLoading, meals}) => {
 return(
-    <h1>This is the Meals List Page</h1>
+    <div className='list-container'>
+        <h1>Planned Meals</h1>
+        {isLoading 
+        ? <p>Loading...</p> 
+        : nextSevenDays.map((date, index) => {
+            const mealForDay = meals.find(meal => datesAreSameDay(date, meal.plannedDate))
+            return(
+                <MealsListItem
+                key={index}
+                meal = {mealForDay}
+                date={date}
+                />
+            )
+        })}
+    </div>
 )
 };
