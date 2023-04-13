@@ -1,7 +1,14 @@
 import React from 'react';
+import { SmallX } from '../ui';
 
-export const IngredientsListItem = () => {
+export const IngredientsListItem = ({ingredient}) => {
 return(
-    <h1>This is the Ingredients List Item Page</h1>
+    <div className='list-item'>
+        <h3>{ingredient.name}</h3>
+        <p>{ingredient.amount} {ingredient.units}</p>
+        <div className='right-action'>
+            <SmallX />
+        </div>
+    </div>
 )
 };
