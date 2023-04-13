@@ -4,16 +4,19 @@ export const useMeals = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [meals, setMeals] = useState([]);
 
+    const loadMeals = async () => {
+        setIsLoading(true);
+        const response = await fetch('/meals')
+        console.log(response, "response")
+        const meals = await response.json();
+        console.log(meals, "meals")
+        setMeals(meals);
+        setIsLoading(false);
+    }
+        
     useEffect(() => {
-        const loadMeals = async () => {
-            setIsLoading(true);
-            const response = await fetch('/meals');
-            const meals = await response.json();
-            setMeals(meals);
-            setIsLoading(false);
-        }
         loadMeals();
-    });
+}, []);
 
     return {isLoading, meals, setMeals};
 }
