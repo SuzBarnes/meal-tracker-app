@@ -6,19 +6,35 @@ import {useMeals, MealsList} from '../meals'
 export const HomePage = () => {
     const {meals, isLoading: isLoadingMeals, setMeals} = useMeals();
     const{ingredients, isLoading: isLoadingIngredients, setIngredients} = useIngredients();
-    console.log(ingredients, 'ingredients');
-return(
+
+    const onDeleteMeal = async (id) => {
+        const response = await fetch(`/meals/${id}`, {method: 'delete'})
+        const updatedMeals = await response.json();
+        setMeals(updatedMeals);
+    }
+
+    const onDeleteIngredient = async (name) => {
+        console.log('hi')
+        const response = await fetch(`/ingredients/${name}`, {method: 'delete'});
+        console.log(response, 'response')
+        const updatedIngredients = await response.json();
+        setIngredients(updatedIngredients);
+    }
+
+    return(
     <div className='page-container'>
         <div className='column'>
             <MealsList 
             isLoading={isLoadingMeals}
             meals={meals}
+            onDelete = {onDeleteMeal}
             />
         </div>
         <div className='column'>
             <IngredientsList
             isLoading={isLoadingIngredients}
             ingredients={ingredients}
+            onDelete={onDeleteIngredient}
             />
             <Link to='/shopping-list'>
             <button className='shopping-list-button list-container full-width'>Generate Shopping List</button>

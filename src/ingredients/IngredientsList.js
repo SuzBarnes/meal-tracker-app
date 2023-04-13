@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { IngredientsListItem } from './IngredientsListItem';
 
-export const IngredientsList = ({ingredients, isLoading}) => {
+export const IngredientsList = ({ingredients, isLoading, onDelete}) => {
 return(
     <div className='list-container'>
         <h1>Ingredients</h1>
@@ -12,6 +12,7 @@ return(
             <IngredientsListItem
             key={ingredient.name}
             ingredient={ingredient}
+            onDelete={onDelete}
             />
         ))
     }
