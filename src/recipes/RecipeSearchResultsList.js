@@ -1,7 +1,15 @@
 import React from 'react';
+import { RecipeSearchResultsListItem } from './RecipeSearchResultsListItem';
 
-export const RecipeSearchResultsList = () => {
-return(
-    <h1>This is the RecipeSearchResultsList Page</h1>
-)
-};
+export const RecipeSearchResultsList = ({ ingredients, recipes }) => {
+    return (
+        <>
+        {recipes.map(recipe => (
+            <RecipeSearchResultsListItem
+                key={recipe.id}
+                recipe={recipe}
+                ingredients={ingredients} />
+        ))}
+        </>
+    );
+}

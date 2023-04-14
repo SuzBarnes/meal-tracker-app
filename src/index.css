@@ -103,7 +103,7 @@ a {
   justify-content: center;
 }
 
-.small-x {
+/* .small-x {
   background-color: #ccc;
   border-radius: 50%;
   cursor: pointer;
@@ -112,7 +112,7 @@ a {
   position: relative;
   text-align: center;
   width: 24px;
-}
+} */
 
 .the-x {
   font-weight: bold;
