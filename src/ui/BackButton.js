@@ -5,6 +5,6 @@ export const BackButton = () => {
     const navigate = useNavigate();
 
     return (
-        <button className="back-button" onClick={navigate.goBack}>Back</button>
+        <button className="back-button" onClick={() =>navigate(-1)}>Back</button>
     )
 }
